@@ -79,7 +79,7 @@ public class MainActivity extends FlutterActivity {
         }
       }
     );
-  
+    }
   Integer comparePose(ArrayList<Double> input_data){
     float max = 0;
     int result = 0;

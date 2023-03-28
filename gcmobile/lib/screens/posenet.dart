@@ -26,7 +26,7 @@ class PosenetScreen extends StatefulWidget {
 class _PosenetScreenState extends State<PosenetScreen>{
   Classifier classifier = new Classifier();
   Posenet posenet = new Posenet();
-  VoiceCommands voice = new VoiceCommands();
+  // VoiceCommands voice = new VoiceCommands();
   var data;
   int _imageHeight = 0;
   int _imageWidth = 0;
@@ -46,7 +46,7 @@ class _PosenetScreenState extends State<PosenetScreen>{
   @override
   void initState(){
     super.initState();
-    voice.listen();
+    // voice.listen();
   }
 
   @override

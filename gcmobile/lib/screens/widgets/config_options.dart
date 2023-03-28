@@ -12,13 +12,13 @@ class _ConfigOptionsWidgetState extends State<ConfigOptionsWidget> {
   bool voiceEnabled;
   bool keypointsEnabled;
 
-  switchVoice(value){
-    Options.voiceCommands = value;
-    if(value == true) VoiceCommands().listen();
-    setState((){
-        voiceEnabled = value;
-    });
-  }
+  // switchVoice(value){
+  //   Options.voiceCommands = value;
+  //   if(value == true) VoiceCommands().listen();
+  //   setState((){
+  //       voiceEnabled = value;
+  //   });
+  // }
 
   switchKeypoints(value){
     Options.renderKeypoints = value;
@@ -41,22 +41,22 @@ class _ConfigOptionsWidgetState extends State<ConfigOptionsWidget> {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              Text(
-                'Voice Commands',
-                style: TextStyle(
-                  fontSize: 15,
+          // Row(
+          //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          //   children: <Widget>[
+          //     Text(
+          //       'Voice Commands',
+          //       style: TextStyle(
+          //         fontSize: 15,
 
-                )
-              ),
-              Switch(
-                onChanged: (value) => switchVoice(value),
-                value: voiceEnabled,
-              )
-            ],
-          ),
+          //       )
+          //     ),
+          //     Switch(
+          //       onChanged: (value) => switchVoice(value),
+          //       value: voiceEnabled,
+          //     )
+          //   ],
+          // ),
           Divider(),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
