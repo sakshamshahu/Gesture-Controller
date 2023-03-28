@@ -5,16 +5,16 @@
 # Gesture Controller
 A cheap and easy solution to add a new way to control Liquid Galaxy, the main goal of the project is to add a gesture controller for the platform, totally based in just a android app and a server to listen the commands.
 
+## Application Update <📥>
+The application dependencies and code has been refactored to work on current systems. 
+Voice control features though remain unfixed due to time constraints, and also it having a version mismatch of about 4 major releases (speech_to_text package).
+Other than that the application works fine 👍 
 ## :mag: About
 The project has the main goal to add new and more interactive ways to use Liquid Galaxy. First, like the project name suggests, the application let you use body poses to navigate with Google Earth with 9 different possible commands:
 - **Idle:** is the "normal pose" and also performs a stop command;
 - **Move:** move Google Earth to north, south, west or east;
 - **Rotate:** rotates the camera to left or right;
 - **Zoom:** make the camera get closer or out (in and out).
-
-Also, the project has support to voice commands, that contains all the previous pose commands plus 2 more, in total 11 commands:
-- **Fly to:** perform a query on Google Earth, and just make it go to someplace;
-- **Planet:** change Google Earth current planet, with Earth, Moon, Mars, and Sky possibilities.
 
 Gesture Controller uses one Android app to get the user camera pose inputs and the speech to voice commands, and also, a server to properly perform the commands on Liquid Galaxy. You can see the global project schema in the image below.
 <br />
