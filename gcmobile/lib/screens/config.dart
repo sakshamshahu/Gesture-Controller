@@ -16,7 +16,7 @@ class _ConfigScreen extends State<ConfigScreen>{
 
   @override
   Widget build(BuildContext context) {
-    Router.state = 'config';
+    MyRouter.state = 'config';
     address.text = Socket.domain;
     return Scaffold(
       body: SafeArea(

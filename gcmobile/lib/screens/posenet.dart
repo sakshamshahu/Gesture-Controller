@@ -51,7 +51,7 @@ class _PosenetScreenState extends State<PosenetScreen>{
 
   @override
   Widget build(BuildContext context) {
-    Router.state='posenet';
+    MyRouter.state='posenet';
     return Scaffold(
       body: Stack(
         children: <Widget>[
@@ -94,7 +94,7 @@ class _PosenetScreenState extends State<PosenetScreen>{
   }
 
   _camera(){
-    if(Router.state=='posenet')
+    if(MyRouter.state=='posenet')
       return Camera(
         widget.cameras,
         setRecognitions,
