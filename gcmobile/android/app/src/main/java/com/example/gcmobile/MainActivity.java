@@ -1,14 +1,14 @@
 package com.example.gcmobile;
 import org.tensorflow.lite.Interpreter;
-import android.os.Bundle;
+// import android.os.Bundle;
 import java.util.ArrayList;
 import java.lang.Integer;
-import io.flutter.plugins.GeneratedPluginRegistrant;
+// import io.flutter.plugins.GeneratedPluginRegistrant;
+// import io.flutter.plugin.common.MethodChannel;
+// import io.flutter.plugin.common.MethodCall;
 import io.flutter.plugin.common.MethodChannel;
-import io.flutter.plugin.common.MethodCall;
-import io.flutter.plugin.common.MethodChannel;
-import io.flutter.plugin.common.MethodChannel.MethodCallHandler;
-import io.flutter.plugin.common.MethodChannel.Result;
+// import io.flutter.plugin.common.MethodChannel.MethodCallHandler;
+// import io.flutter.plugin.common.MethodChannel.Result;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.nio.MappedByteBuffer;
@@ -18,6 +18,10 @@ import android.content.res.AssetFileDescriptor;
 import android.content.Context;
 import org.tensorflow.lite.Interpreter;
 import io.flutter.embedding.android.FlutterActivity;
+import io.flutter.plugin.common.MethodChannel;
+import io.flutter.plugins.GeneratedPluginRegistrant;
+import androidx.annotation.NonNull;
+import io.flutter.embedding.engine.FlutterEngine;
 
 public class MainActivity extends FlutterActivity {
 
@@ -28,36 +32,54 @@ public class MainActivity extends FlutterActivity {
 
   protected Interpreter tflite;
 
-  @Override
-  protected void onCreate(Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
-    //GeneratedPluginRegistrant.registerWith(this);
-    audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
-    audioManager.setStreamMute(AudioManager.STREAM_NOTIFICATION, true);
-    try{
-      tflite = new Interpreter(loadModelFile());
-    } catch (Exception e){
-      System.out.println(e);
-    }
+  // @Override
+  // protected void onCreate(Bundle savedInstanceState) {
+  //   super.onCreate(savedInstanceState);
+  //   //GeneratedPluginRegistrant.registerWith(this);
+  //   audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+  //   audioManager.setStreamMute(AudioManager.STREAM_NOTIFICATION, true);
+  //   try{
+  //     tflite = new Interpreter(loadModelFile());
+  //   } catch (Exception e){
+  //     System.out.println(e);
+  //   }
 
-    new MethodChannel( getFlutterEngine().getDartExecutor().getBinaryMessenger(), CHANNEL).setMethodCallHandler(
-      new MethodCallHandler() {
-        @Override
-        public void onMethodCall(MethodCall call, Result result) {
-          int pose;
-          if (call.method.equals("identifyPose")) {
-            ArrayList<Double> args  = new ArrayList<>();
-            args = call.argument("arg");
-            pose = comparePose(args);
-            result.success(pose);
-          } else {
-            result.notImplemented();
-          }
+  //   new MethodChannel( getFlutterEngine().getDartExecutor().getBinaryMessenger(), CHANNEL).setMethodCallHandler(
+  //     new MethodCallHandler() {
+  //       @Override
+  //       public void onMethodCall(MethodCall call, Result result) {
+  //         int pose;
+  //         if (call.method.equals("identifyPose")) {
+  //           ArrayList<Double> args  = new ArrayList<>();
+  //           args = call.argument("arg");
+  //           pose = comparePose(args);
+  //           result.success(pose);
+  //         } else {
+  //           result.notImplemented();
+  //         }
+  //       }
+  //     }
+  //   );
+  // }
+
+  @Override
+  public void configureFlutterEngine(@NonNull FlutterEngine flutterEngine) {
+    GeneratedPluginRegistrant.registerWith(flutterEngine);
+    new MethodChannel(flutterEngine.getDartExecutor().getBinaryMessenger(), CHANNEL)
+    .setMethodCallHandler(
+      (call, result) -> {
+        int pose;
+        if (call.method.equals("identifyPose")) {
+          ArrayList<Double> args  = new ArrayList<>();
+          args = call.argument("arg");
+          pose = comparePose(args);
+          result.success(pose);
+        } else {
+          result.notImplemented();
         }
       }
     );
-  }
-
+  
   Integer comparePose(ArrayList<Double> input_data){
     float max = 0;
     int result = 0;
